@@ -1,0 +1,7 @@
+.idea
+package-lock.json
+tests
+.env
+node_modules
+public/css
+public/js
