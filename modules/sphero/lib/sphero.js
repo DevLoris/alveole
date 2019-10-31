@@ -5,10 +5,16 @@ class Sphero {
         this.identifier = identifier
     }
 
-    move(heading, duration, speed) {
-        global.io.emit("sphero-move", this.identifier, heading, duration, speed)
+    /**
+     * @param {Move} move
+     */
+    move(move) {
+        global.io.emit("sphero-move", this.identifier, move.heading, move.durationInSecond, move.speed)
     }
 
+    /**
+     * @param {SpheroMatrix} matrix
+     */
     matrix(matrix) {
         console.log(this.identifier)
         global.io.emit("sphero-matrix", this.identifier, matrix.get())
