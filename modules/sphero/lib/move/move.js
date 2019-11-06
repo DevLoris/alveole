@@ -1,8 +1,7 @@
 class Move {
-    constructor(heading, speed, durationInSecond) {
+    constructor(heading, speed) {
         this.heading = heading;
         this.speed = speed;
-        this.durationInSecond = durationInSecond;
     }
 }
 

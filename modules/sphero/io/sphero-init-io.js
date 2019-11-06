@@ -1,6 +1,11 @@
+const {Move} = require( "../lib/move/move");
+const {MOVE_VARS} = require( "../lib/move/move-vars");
+
 const {Color} = require("../lib/color");
+const {SpheroJsonAnim} = require("../lib/utils/sphero-json-anim");
 const {SpheroMatrix} = require("../lib/sphero-matrix");
 const {Sphero} = require("../lib/sphero");
+const _ = require("lodash");
 const {SPHERO_CACHE} = require("../lib/spherocache");
 module.exports = function (io) {
     io.on('connection', function (client) {
@@ -8,22 +13,14 @@ module.exports = function (io) {
             console.log("CONNECTED SPHERO : ", data);
             SPHERO_CACHE.set(data, new Sphero(data));
 
-            /*setTimeout(function () {
-                SPHERO_CACHE.get(data).matrix(new SpheroMatrix(
-                    [
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0]
-                    ],[
-                        new Color(1, 0, 0)
-                    ]
-                ))
-            }, 2000)*/
+            setTimeout(function () {
+                //SPHERO_CACHE.get(data).glitch();
+                //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
+
+                setInterval(function () {
+                    SPHERO_CACHE.get(data).move(new Move(_.random(0, 359), MOVE_VARS.SPHERO.MEDIUM));
+                }, 1000)
+            }, 3000)
         });
     });
 };
