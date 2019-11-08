@@ -17,9 +17,10 @@ module.exports = function (io) {
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
 
-                setInterval(function () {
-                    SPHERO_CACHE.get(data).move(new Move(_.random(0, 359), MOVE_VARS.SPHERO.MEDIUM));
-                }, 1000)
+                //setInterval(function () {
+                    SPHERO_CACHE.get(data).doCircle()
+                    //SPHERO_CACHE.get(data).move(new Move(_.random(0, 359), MOVE_VARS.SPHERO.MEDIUM));
+               // }, 1000)
             }, 3000)
         });
     });

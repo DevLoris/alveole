@@ -44,6 +44,13 @@ class Sphero {
     glitch() {
         global.io.emit('sphero-glitch', this.identifier);
     }
+
+    /**
+     * @desc Active un effet glitch temporaire sur la boule
+     */
+    doCircle() {
+        global.io.emit('sphero-circle', this.identifier);
+    }
 }
 
 module.exports.Sphero = Sphero;
