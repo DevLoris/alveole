@@ -11,9 +11,14 @@ const express = require('express');
 const path = require('path');
 const Twig = require('twig');
 const events = require("./vars/events");
+const {JOYSTICKS} = require("../modules/gpio/joystick-list");
+require('dotenv').config();
 
 module.exports = (app) => {
     const registerModules = new register_module(app);
+
+    console.log("TESTTTTT");
+    JOYSTICKS["1"].echo();
 
     //On modifie le comportement de express
     app.use(bodyParser.json());
@@ -70,6 +75,9 @@ module.exports = (app) => {
         registerModules.registerRoutes();
         registerModules.registerSockets();
         registerModules.registerLoadables();
+
+        // On écoute les joysticks
+
 
         //Call an event
         global.event_manager.emit(events.events_names.START);
