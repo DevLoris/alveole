@@ -5,10 +5,10 @@ class Joystick {
     /**
      * @param {Sphero} sphero
      */
-    constructor(sphero, topPin, bottomPin, leftPin, rightPin){
+    constructor(sphero, frontPin, backPin, leftPin, rightPin){
         this.gpio = {}
-        this.gpio.top = topPin
-        this.gpio.bottom = bottomPin
+        this.gpio.front = frontPin
+        this.gpio.back = backPin
         this.gpio.left = leftPin
         this.gpio.right = rightPin
 
@@ -21,27 +21,27 @@ class Joystick {
     init() {
 
         // GPIO
-        this.top = new Gpio(this.gpio.top, { mode: Gpio.INPUT, alert: true })
-        this.bottom = new Gpio(this.gpio.bottom, { mode: Gpio.INPUT, alert: true })
+        this.front = new Gpio(this.gpio.front, { mode: Gpio.INPUT, alert: true })
+        this.back = new Gpio(this.gpio.back, { mode: Gpio.INPUT, alert: true })
         this.left = new Gpio(this.gpio.left, { mode: Gpio.INPUT, alert: true })
         this.right = new Gpio(this.gpio.right, { mode: Gpio.INPUT, alert: true })
 
-        this.top.glitchFilter(5000);
-        this.bottom.glitchFilter(5000);
+        this.front.glitchFilter(5000);
+        this.back.glitchFilter(5000);
         this.left.glitchFilter(5000);
         this.right.glitchFilter(5000);
 
-        this.directions = { top: false, bottom: false, left: false, right: false }
+        this.directions = { front: false, back: false, left: false, right: false }
     }
 
     onJoystickAction() {
         this.top.on('alert', (level) => {
-            this.directions.top = !level
+            this.directions.front = !level
             this.directionChanged();
         });
         this.bottom.on('alert', (level) => {
-            this.directions.bottom = !level
-            this.directionChanged();
+            this.directions.back = !level
+            this.directionChanged()
         });
         this.left.on('alert', (level) => {
             this.directions.left = !level
@@ -55,22 +55,22 @@ class Joystick {
 
     directionChanged(){
         console.log(this.directions)
-        let action = null;
+        let move = null;
         switch (this.directions){
             case {front: true, back: false, left: false, right: false} :
-                action = PREMADE_MOVE.FRONT_1
+                move = 'front'
                 break;
             case {front: false, back: true, left: false, right: false} :
-                action = PREMADE_MOVE.BACK_1
+                move = 'back'
                 break;
             case {front: false, back: false, left: true, right: false} :
-                action = PREMADE_MOVE.LEFT_1
+                move = 'left'
                 break;
             case {front: false, back: false, left: false, right: true} :
-                action = PREMADE_MOVE.RIGHT_1
+                move = 'right'
                 break;
         }
-        this.execSpheroAction(action)
+        this.execSpheroAction(move)
     }
 
     execSpheroAction(action) {
