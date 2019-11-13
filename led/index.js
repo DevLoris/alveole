@@ -3,7 +3,7 @@ const io = require('socket.io');
 const express = require('express');
 require('dotenv').config();
 
-express().listen(process.env.SERVER_PORT, () => {
+let server = express().listen(process.env.SERVER_PORT, () => {
     let port = server.address().port;
     console.log("\x1b[31m",'[SERVER STATUS] Server running at port ' + port, "\x1b[0m");
 
