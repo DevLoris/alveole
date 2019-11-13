@@ -14,6 +14,7 @@ server.listen(PORT, () => {
 
 const io = require('socket.io')(server);
 
+const {BUTTON_LIST} = require('./button-list'); //use GPIO pin 4, and specify that it is output
 const {LIST} = require('./led-list'); //use GPIO pin 4, and specify that it is output
 
 io.on('connection', function (client) {

@@ -14,6 +14,10 @@ class Led {
         this.gpio.writeSync(1)
     }
 
+    toggle() {
+        this.gpio.writeSync(this.isTurnedOn() ?  0 : 1)
+    }
+
     off() {
         this.gpio.writeSync(0)
     }
