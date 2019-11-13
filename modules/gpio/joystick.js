@@ -1,9 +1,10 @@
+const {SPHERO_CACHE} = require("../sphero/lib/spherocache");
 const {PREMADE_MOVE} = require("../sphero/lib/move/premade-move");
 const Gpio = require('pigpio').Gpio; //include pigpio to interact with the GPIO
 
 class Joystick {
     /**
-     * @param {Sphero} sphero
+     * @param {String} sphero
      */
     constructor(sphero, frontPin, backPin, leftPin, rightPin){
         this.gpio = {}
@@ -31,52 +32,77 @@ class Joystick {
         this.left.glitchFilter(5000);
         this.right.glitchFilter(5000);
 
-        this.directions = { front: false, back: false, left: false, right: false }
+        // this.directions = { front: false, back: false, left: false, right: false }
+        this.directions = [0, 0, 0, 0] // front, back, left, right
     }
 
     onJoystickAction() {
-        this.top.on('alert', (level) => {
-            this.directions.front = !level
+        this.front.on('alert', (level) => {
+            this.directions[0] = Number(!level)
             this.directionChanged();
         });
-        this.bottom.on('alert', (level) => {
-            this.directions.back = !level
+        this.back.on('alert', (level) => {
+            this.directions[1] = Number(!level)
             this.directionChanged()
         });
         this.left.on('alert', (level) => {
-            this.directions.left = !level
+            this.directions[2] = Number(!level)
             this.directionChanged();
         });
         this.right.on('alert', (level) => {
-            this.directions.right = !level
+            this.directions[3] = Number(!level)
             this.directionChanged();
         });
     }
 
     directionChanged(){
-        console.log(this.directions)
-        /*
-        let move = null;
-        switch (this.directions){
-            case {front: true, back: false, left: false, right: false} :
+        let move = null; 
+
+        if(typeof this.sphero === "string") {
+            if(SPHERO_CACHE.has(this.sphero))
+                this.sphero = SPHERO_CACHE.get(this.sphero)
+        }
+
+        switch (this.directions.join('')){
+            case '1000' : // front
                 move = 'front'
+                this.sphero.move(PREMADE_MOVE.FRONT)
                 break;
-            case {front: false, back: true, left: false, right: false} :
+            case '0100' : // back
+                this.sphero.move(PREMADE_MOVE.BACK)
                 move = 'back'
                 break;
-            case {front: false, back: false, left: true, right: false} :
+            case '0010' : // left
+                this.sphero.move(PREMADE_MOVE.LEFT)
                 move = 'left'
                 break;
-            case {front: false, back: false, left: false, right: true} :
+            case '0001' : // right
+                this.sphero.move(PREMADE_MOVE.RIGHT)
                 move = 'right'
                 break;
+            case '1010' : // front-left
+                move = 'front-left'
+                this.sphero.move(PREMADE_MOVE.FRONT_LEFT)
+                break;
+            case '1001' : // front-right
+                move = 'front-right'
+                this.sphero.move(PREMADE_MOVE.FRONT_RIGHT)
+                break;
+            case '0110' : // back-left
+                move = 'back-left'
+                this.sphero.move(PREMADE_MOVE.BACK_LEFT)
+                break;
+            case '0101' : // back-right
+                move = 'back-right'
+                this.sphero.move(PREMADE_MOVE.BACK_RIGHT)
+                break;
+            default:
+                move = 'stop'
+                this.sphero.stopMove()
+                break
         }
-        this.execSpheroAction(move)
-        */
-    }
 
-    execSpheroAction(action) {
-        this.sphero.move(action)
+        console.log(move)
     }
 
     echo() {

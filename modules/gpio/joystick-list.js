@@ -1,7 +1,8 @@
+const {SPHERO_CACHE} = require("../sphero/lib/spherocache");
 const {Sphero} = require("../sphero/lib/sphero");
 const {Joystick} = require("./joystick");
 const JOYSTICKS = {
-    "1": new Joystick(new Sphero(null), 18, 17, 27, 4)
+    "1": new Joystick("SB-5D1C", 18, 17, 27, 4)
 }
 
 module.exports.JOYSTICKS = JOYSTICKS;
