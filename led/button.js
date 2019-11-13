@@ -6,7 +6,7 @@ class Button {
         this.led = led;
 
 
-        this.gpio.watch((err, value) => led.toggle());
+        this.gpio.watch((err, value) => led.on());
     }
 }
 
