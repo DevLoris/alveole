@@ -55,6 +55,7 @@ class Joystick {
 
     directionChanged(){
         console.log(this.directions)
+        /*
         let move = null;
         switch (this.directions){
             case {front: true, back: false, left: false, right: false} :
@@ -71,6 +72,7 @@ class Joystick {
                 break;
         }
         this.execSpheroAction(move)
+        */
     }
 
     execSpheroAction(action) {
