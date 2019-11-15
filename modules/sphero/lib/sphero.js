@@ -1,9 +1,10 @@
 const global = require("../../../core/global");
 
 class Sphero {
-    constructor(identifier){
+    constructor(identifier, allowed = false){
         this.identifier = identifier
-        this.allowMove = false
+        this.allowMove = allowed
+        this.transfering = false
     }
 
     toggleMove(allow_move) {
