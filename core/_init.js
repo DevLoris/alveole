@@ -11,6 +11,7 @@ const express = require('express');
 const path = require('path');
 const Twig = require('twig');
 const events = require("./vars/events");
+const fileupload = require("express-fileupload");
 
 module.exports = (app) => {
     const registerModules = new register_module(app);
@@ -19,6 +20,7 @@ module.exports = (app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
+    app.use(fileupload());
 
     const cache = (process.env.MODE === mode.DEVELOPMENT) ? {} : { maxAge:  86400000 * 30};
 
