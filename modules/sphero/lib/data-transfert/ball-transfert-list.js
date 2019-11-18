@@ -9,7 +9,8 @@ const TRANSFERT = {
             from.toggleMove(false);
             from.stopMove();
             to.move(PREMADE_MOVE.FRONT);
-            SpheroJsonAnim.play('test-2', to, () => {
+            SpheroJsonAnim.play('tptransparent', from);
+            SpheroJsonAnim.play('nectar', to, () => {
                 to.toggleMove(true);
                 to.move(PREMADE_MOVE.FRONT);
             });
@@ -19,6 +20,7 @@ const TRANSFERT = {
             from.toggleMove(false);
             to.toggleMove(true);
             from.stopMove();
+            SpheroJsonAnim.play('tptransparent', from);
             SpheroJsonAnim.play('test-2', to);
             console.log("FROM BALL 2 -> BALL 3")
         })

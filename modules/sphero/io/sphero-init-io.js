@@ -14,9 +14,14 @@ module.exports = function (io) {
         client.on('sphero-init', function (data) {
             console.log("CONNECTED SPHERO : ", data);
             SPHERO_CACHE.set(data, new Sphero(data, data === SPHERO_VARS.BALL_1));
+
+
+            if(data === SPHERO_VARS.BALL_2) {
+                SPHERO_CACHE.get(data).state = SPHERO_VARS.STATES.NECTAR;
+            }
             setTimeout(function () {
-                if(data === SPHERO_VARS.BALL_1)
-                    SPHERO_CACHE.get(data).move(PREMADE_MOVE.FRONT)
+                //if(data === SPHERO_VARS.BALL_1)
+                  //  SPHERO_CACHE.get(data).move(PREMADE_MOVE.FRONT)
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
 
