@@ -1,8 +1,25 @@
 const global = require("../../../core/global");
+const {SPHERO_VARS} = require("./sphero-vars");
 
 class Sphero {
-    constructor(identifier){
+    constructor(identifier, allowed = false){
         this.identifier = identifier
+        this.allowMove = allowed
+        this.transfering = false
+
+        //SPAM (ball2)
+
+        this.spamed = false;
+        this.spamed_time = 0;
+
+        //STATES
+        this.states = SPHERO_VARS.STATES.INACTIVE;
+    }
+
+    toggleMove(allow_move) {
+        this.allowMove = allow_move;
+
+        global.io.emit("sphero-toggle-move", this.identifier, allow_move)
     }
 
     /**
@@ -10,7 +27,8 @@ class Sphero {
      * @param {Move} move
      */
     move(move) {
-        global.io.emit("sphero-move", this.identifier, move.heading, move.speed)
+        if(this.allowMove)
+            global.io.emit("sphero-move", this.identifier, move.heading, move.speed)
     }
 
     /**

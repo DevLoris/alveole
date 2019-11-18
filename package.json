@@ -54,6 +54,7 @@
     "nodemailer": "^4.6.7",
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^1.19.1",
+    "onoff": "^5.0.0",
     "path": "^0.12.7",
     "phaser": "^2.6.2",
     "php-unserialize": "0.0.1",

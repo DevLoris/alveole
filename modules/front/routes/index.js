@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 
 router.get('', function(req, res) {
-    res.send("ok");
+    res.render("index.twig");
 });
 router.get('/test', function(req, res) {
     res.send("ok");
