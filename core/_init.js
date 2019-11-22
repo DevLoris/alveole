@@ -14,6 +14,7 @@ const events = require("./vars/events");
 require('dotenv').config();
 
 const {JOYSTICKS} = require("../modules/gpio/joystick-list");
+const fileupload = require("express-fileupload");
 
 module.exports = (app) => {
     const registerModules = new register_module(app);
@@ -22,6 +23,7 @@ module.exports = (app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser());
+    app.use(fileupload());
 
     const cache = (process.env.MODE === mode.DEVELOPMENT) ? {} : { maxAge:  86400000 * 30};
 
@@ -73,9 +75,6 @@ module.exports = (app) => {
         registerModules.registerRoutes();
         registerModules.registerSockets();
         registerModules.registerLoadables();
-
-        // On écoute les joysticks
-
 
         //Call an event
         global.event_manager.emit(events.events_names.START);
