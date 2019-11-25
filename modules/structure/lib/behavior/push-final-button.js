@@ -5,7 +5,7 @@ let pushFinalButton = () => {
     // RESET MODULE
     SPHERO_VARS.ACTIVE_MODULE = 0;
 
-    global.io.emit("reset", "");
+    global.io.emit("sphero-reset", "");
 
     // RESET BALL
     let ball_1 = SPHERO_CACHE.get(SPHERO_VARS.BALL_1);
