@@ -11,7 +11,7 @@ const SPHERO_VARS = {
         MIEL: "MIEL"
     },
 
-    ACTIVE_MODULE : 2,
+    ACTIVE_MODULE : 1,
     getModuleOf: (ball) => {
         return (ball === SPHERO_VARS.BALL_1) ? 1 : ( (ball === SPHERO_VARS.BALL_2) ? 2 : 3);
     },

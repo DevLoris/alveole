@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node -max_old_space_size=2048 -r esm index.js",
+    "start": "NODE_ENV=production node -max_old_space_size=1024 -r esm index.js",
     "debug": "NODE_ENV=dev DEBUG=* node -max_old_space_size=2048 -r esm index.js",
     "dev": "NODE_ENV=dev node -max_old_space_size=1024 index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

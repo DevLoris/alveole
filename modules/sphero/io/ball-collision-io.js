@@ -5,7 +5,16 @@ module.exports = function (io) {
     io.on('connection', function (client) {
         client.on('ball-collision', function (data) {
             let ball = SPHERO_CACHE.get(data);
+
+            console.log("COLLISSION " + data);
+
+            if(ball === undefined)
+                return;
+
+            console.log(ball.state);
+
             if(ball !== null && ball.state === SPHERO_VARS.STATES.INACTIVE) {
+                console.log("COLLISSION 2 " + data);
                 let module = SPHERO_VARS.getModuleOf(data);
                 console.log(module);
                 //@todo debug le module là

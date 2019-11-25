@@ -13,7 +13,7 @@ class Sphero {
         this.spamed_time = 0;
 
         //STATES
-        this.states = SPHERO_VARS.STATES.INACTIVE;
+        this.state = SPHERO_VARS.STATES.INACTIVE;
     }
 
     toggleMove(allow_move) {
@@ -36,6 +36,13 @@ class Sphero {
      */
     stopMove() {
         global.io.emit("sphero-stop-move", this.identifier)
+    }
+
+    /**
+     * @desc Pour arrêter la double
+     */
+    resetTransfer() {
+        global.io.emit("sphero-transfer-reset", this.identifier)
     }
 
     /**
