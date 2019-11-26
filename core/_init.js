@@ -14,6 +14,7 @@ const events = require("./vars/events");
 require('dotenv').config();
 
 const {JOYSTICKS} = require("../modules/gpio/joystick-list");
+const {BUTTONS} = require("../modules/gpio/button-list");
 const fileupload = require("express-fileupload");
 
 module.exports = (app) => {
