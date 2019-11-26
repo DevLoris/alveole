@@ -1,14 +1,18 @@
 const {SPHERO_CACHE} = require("../sphero/lib/spherocache");
 const {PREMADE_MOVE} = require("../sphero/lib/move/premade-move");
 
-if(process.env.RASP == "oui") {
     const Gpio = require('pigpio').Gpio; //include pigpio to interact with the GPIO
 
     class Joystick {
         /**
          * @param {String} sphero
+         * @param {Number} frontPin
+         * @param {Number} backPin
+         * @param {Number} leftPin
+         * @param {Number} rightPin
          */
         constructor(sphero, frontPin, backPin, leftPin, rightPin) {
+            console.log("init joystick");
             this.gpio = {}
             this.gpio.front = frontPin
             this.gpio.back = backPin
@@ -63,6 +67,8 @@ if(process.env.RASP == "oui") {
             if (typeof this.sphero === "string") {
                 if (SPHERO_CACHE.has(this.sphero))
                     this.sphero = SPHERO_CACHE.get(this.sphero)
+                else
+                    return;
             }
 
             switch (this.directions.join('')) {
@@ -106,15 +112,5 @@ if(process.env.RASP == "oui") {
 
             console.log(move)
         }
-
-        echo() {
-            console.log("test")
-        }
     }
     module.exports.Joystick = Joystick;
-}
-else {
-    class Joystick {}
-    module.exports.Joystick = Joystick;
-}
-
