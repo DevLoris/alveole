@@ -11,7 +11,7 @@ class Button {
 
     init() {
 
-        this.gpio.glitchFilter(5000);
+        this.gpio.glitchFilter(10000);
 
         this.gpio.on('alert', (level) => {
             this.pressed = !level
