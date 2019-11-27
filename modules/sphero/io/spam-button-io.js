@@ -7,6 +7,7 @@ module.exports = function (io) {
         client.on('spam-button', function () {
             console.log('spam');
             let ball = SPHERO_CACHE.get(SPHERO_VARS.BALL_2);
+            //todo gérer le spam qui crash
             if(ball !== null && ball.state === SPHERO_VARS.STATES.NECTAR && SPHERO_VARS.isModuleActive(2)) {
                 if(!ball.spamed) {
                     SpheroJsonAnim.play("miel-" + ball.spamed_time, ball, () => {
