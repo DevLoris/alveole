@@ -1,10 +1,10 @@
 const {SPHERO_CACHE} = require("../lib/spherocache");
+const {SPHERO_VARS} = require("../lib/sphero-vars");
 
 module.exports = function (io) {
     io.on('connection', function (client) {
-        client.on('ball-allow-move', function (id, allowed) {
-            let ball =  SPHERO_CACHE.get(id);
-            ball.allowMove = allowed;
+        client.on('active', function () {
+            SPHERO_VARS.ACTIVE_MODULE = 1;
         });
     });
 };

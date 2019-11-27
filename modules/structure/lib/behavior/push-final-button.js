@@ -1,9 +1,9 @@
 const {SPHERO_VARS} = require("../../../sphero/lib/sphero-vars");
 const {SPHERO_CACHE} = require("../../../sphero/lib/spherocache");
 const global = require("../../../../core/global");
-let pushFinalButton = () => {
+let pushFinalButton = (init = false) => {
     // RESET MODULE
-    SPHERO_VARS.ACTIVE_MODULE = 1;
+    SPHERO_VARS.ACTIVE_MODULE = (init) ? 1 : 0;
 
     global.io.emit("sphero-reset", "");
 

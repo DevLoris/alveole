@@ -21,7 +21,7 @@ module.exports = function (io) {
                 if( data === SPHERO_VARS.BALL_1)
                     SpheroJsonAnim.play('nectar', SPHERO_CACHE.get(data));
 
-                pushFinalButton();
+                pushFinalButton(true);
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
 
