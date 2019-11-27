@@ -27,12 +27,8 @@ class Sphero {
      * @param {Move} move
      */
     move(move) {
-        console.log('in move')
         if(this.allowMove)
-            console.log(this.allowMove)
             global.io.emit("sphero-move", this.identifier, move.heading, move.speed)
-        console.log('this', this)
-        console.log('allowMove', this.allowMove)
     }
 
     /**
