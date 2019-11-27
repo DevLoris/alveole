@@ -16,12 +16,13 @@ module.exports = function (io) {
             console.log("CONNECTED SPHERO : ", data);
             SPHERO_CACHE.set(data, new Sphero(data, data === SPHERO_VARS.BALL_1));
 
-            if( data === SPHERO_VARS.BALL_1)
-                SpheroJsonAnim.play('nectar', SPHERO_CACHE.get(data));
-            else
-                SpheroJsonAnim.play('tptransparent', SPHERO_CACHE.get(data));
 
             setTimeout(function () {
+                if( data === SPHERO_VARS.BALL_1)
+                    SpheroJsonAnim.play('nectar', SPHERO_CACHE.get(data));
+                else
+                    SpheroJsonAnim.play('tptransparent', SPHERO_CACHE.get(data));
+
                 pushFinalButton();
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
