@@ -10,7 +10,7 @@ let pushFinalButton = () => {
     // RESET BALL
     let ball_1 = SPHERO_CACHE.get(SPHERO_VARS.BALL_1);
     if(ball_1 !== undefined) {
-        ball_1.allowMove = false;
+        ball_1.allowMove = true;
         ball_1.state = SPHERO_VARS.STATES.NECTAR;
     }
 

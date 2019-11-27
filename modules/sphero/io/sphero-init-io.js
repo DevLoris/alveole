@@ -16,8 +16,13 @@ module.exports = function (io) {
             console.log("CONNECTED SPHERO : ", data);
             SPHERO_CACHE.set(data, new Sphero(data, data === SPHERO_VARS.BALL_1));
 
+            if( data === SPHERO_VARS.BALL_1)
+                SpheroJsonAnim.play('nectar', SPHERO_CACHE.get(data));
+            else
+                SpheroJsonAnim.play('tptransparent', SPHERO_CACHE.get(data));
+
             setTimeout(function () {
-                pushFinalButton()
+                pushFinalButton();
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
 
@@ -25,7 +30,7 @@ module.exports = function (io) {
                  //   SPHERO_CACHE.get(data).doCircle()
                     //SPHERO_CACHE.get(data).move(new Move(_.random(0, 359), MOVE_VARS.SPHERO.MEDIUM));
                // }, 1000)
-            }, 11000)
+            }, 1000)
         });
     });
 };
