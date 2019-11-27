@@ -1,19 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-
-<div id="sp"></div>
-<div id="sp2"></div>
+    <div id="el">
+        test :
+        ${ vars }
+        ${ cache }
+    </div>
 
 <script>
-    var socket = io('http://raspberrymain.local:8001');
+    var app = new Vue({
+        delimiters: ['${', '}'],
+        el: '#el',
+        data: {
+            vars: {},
+            cache: {}
+        }
+    })
+
+   var socket = io('http://localhost:8002');
     socket.on('connect', function () {
         setInterval(() => {
             socket.emit('status');
             socket.on('status', (data, data2) => {
-                document.querySelector('#sp').innerText = JSON.stringify(data);
-                document.querySelector('#sp2').innerText = JSON.stringify(data2);
+                app.vars = data;
+                app.cache = data2;
             });
         }, 1000);
     });
 </script>
+</body>
+</html>

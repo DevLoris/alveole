@@ -1,7 +1,7 @@
 const {SPHERO_CACHE} = require("../sphero/lib/spherocache");
 const {PREMADE_MOVE} = require("../sphero/lib/move/premade-move");
 
-    const Gpio = require('pigpio').Gpio; //include pigpio to interact with the GPIO
+const Gpio = require('pigpio').Gpio; //include pigpio to interact with the GPIO
 
     class Joystick {
         /**
