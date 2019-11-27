@@ -9,12 +9,10 @@ const TRANSFERT = {
         new BallTransfert(SPHERO_VARS.BALL_1, SPHERO_VARS.BALL_2, (from, to) => {
             from.toggleMove(false);
             from.stopMove();
-            to.move(PREMADE_MOVE.FRONT);
             SpheroJsonAnim.play('tptransparent', from);
             SpheroJsonAnim.play('nectar', to, () => {
                 SPHERO_VARS.ACTIVE_MODULE = 2;
                 to.toggleMove(true);
-                to.move(PREMADE_MOVE.FRONT);
                 to.state = SPHERO_VARS.STATES.NECTAR
                 SPHERO_CACHE.get(SPHERO_VARS.BALL_3).resetTransfer();
             });
