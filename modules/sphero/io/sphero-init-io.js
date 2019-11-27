@@ -6,6 +6,7 @@ const {SpheroJsonAnim} = require("../lib/utils/sphero-json-anim");
 const {SpheroMatrix} = require("../lib/sphero-matrix");
 const {Sphero} = require("../lib/sphero");
 const _ = require("lodash");
+const {pushFinalButton} = require("../../structure/lib/behavior/push-final-button");
 const {PREMADE_MOVE} = require("../lib/move/premade-move");
 const {SPHERO_VARS} = require("../lib/sphero-vars");
 const {SPHERO_CACHE} = require("../lib/spherocache");
@@ -16,8 +17,7 @@ module.exports = function (io) {
             SPHERO_CACHE.set(data, new Sphero(data, data === SPHERO_VARS.BALL_1));
 
             setTimeout(function () {
-                if(data === SPHERO_VARS.BALL_1)
-                    SPHERO_CACHE.get(data).move(PREMADE_MOVE.FRONT)
+                pushFinalButton()
                 //SPHERO_CACHE.get(data).glitch();
                 //SpheroJsonAnim.play('test-2', SPHERO_CACHE.get(data));
 

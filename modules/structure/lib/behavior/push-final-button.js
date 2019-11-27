@@ -3,7 +3,7 @@ const {SPHERO_CACHE} = require("../../../sphero/lib/spherocache");
 const global = require("../../../../core/global");
 let pushFinalButton = () => {
     // RESET MODULE
-    SPHERO_VARS.ACTIVE_MODULE = 0;
+    SPHERO_VARS.ACTIVE_MODULE = 1;
 
     global.io.emit("sphero-reset", "");
 
