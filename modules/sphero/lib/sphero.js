@@ -27,7 +27,7 @@ class Sphero {
      * @param {Move} move
      */
     move(move) {
-        if(this.allowMove)
+        if(SPHERO_VARS.getModuleOf(this.identifier) === SPHERO_VARS.ACTIVE_MODULE)
             global.io.emit("sphero-move", this.identifier, move.heading, move.speed)
     }
 
