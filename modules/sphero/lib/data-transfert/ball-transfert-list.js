@@ -15,6 +15,7 @@ const TRANSFERT = {
                 SPHERO_VARS.ACTIVE_MODULE = 2;
                 to.toggleMove(true);
                 to.move(PREMADE_MOVE.FRONT);
+                to.state = SPHERO_VARS.STATES.NECTAR
                 SPHERO_CACHE.get(SPHERO_VARS.BALL_3).resetTransfer();
             });
             console.log("FROM BALL 1 -> BALL 2")
@@ -23,6 +24,7 @@ const TRANSFERT = {
             SPHERO_VARS.ACTIVE_MODULE = 3;
             from.toggleMove(false);
             to.toggleMove(true);
+            to.state = SPHERO_VARS.STATES.MIEL
             from.stopMove();
             SpheroJsonAnim.play('tptransparent', from);
             SpheroJsonAnim.play('test-2', to);
