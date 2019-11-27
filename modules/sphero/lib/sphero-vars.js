@@ -3,7 +3,7 @@ const SPHERO_VARS = {
     BALL_2 : "SB-2020", // Atelier 2 (Transformation)
     BALL_3 : "SB-0994", // Atelier 3 (Stockage)
     BEFORE_NEXT_SPAM: 1000,
-    SPAM: 8,
+    SPAM: 7,
 
     STATES : {
         INACTIVE:  "INACTIVE",

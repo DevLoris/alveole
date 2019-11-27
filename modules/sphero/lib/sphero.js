@@ -70,6 +70,15 @@ class Sphero {
         global.io.emit('sphero-glitch', this.identifier);
     }
 
+
+    /**
+     * @desc Active un effet glitch temporaire sur la boule
+     * todo Ajouter la gestion du temps depuis la signature de la fonction
+     */
+    unglitch() {
+        global.io.emit('sphero-unglitch', this.identifier);
+    }
+
     /**
      * @desc Active un effet glitch temporaire sur la boule
      */

@@ -9,7 +9,9 @@ module.exports = function (io) {
             let ball = SPHERO_CACHE.get(SPHERO_VARS.BALL_2);
             if(ball !== null && ball.state === SPHERO_VARS.STATES.NECTAR && SPHERO_VARS.isModuleActive(2)) {
                 if(!ball.spamed) {
-                    SpheroJsonAnim.play("miel-" + ball.spamed_time, ball);
+                    SpheroJsonAnim.play("miel-" + ball.spamed_time, ball, () => {
+                        ball.unglitch();
+                    });
                     ball.spamed = true;
                     ball.spamed_time++;
                     ball.glitch();
