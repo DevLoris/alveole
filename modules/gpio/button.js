@@ -12,7 +12,10 @@ class Button {
     init() {
         this.gpio.on('alert', (level) => {
             this.pressed = !level
-            console.log('btn : ', this.pressed)
+
+            if(this.pressed){
+                console.log('btn : ', this.pressed)
+            }
         });
     }
 }
