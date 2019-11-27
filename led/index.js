@@ -28,4 +28,10 @@ io.on('connection', function (client) {
         if(LIST[id])
             LIST[id].off();
     });
+    client.on('reset_alveoles', function () {
+        console.log('RESET ALVEOLES')
+        Object.values(BUTTON_LIST).forEach((button) => {
+            button.reset()
+        })
+    })
 });

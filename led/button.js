@@ -13,7 +13,6 @@ class Button {
     }
 
     init() {
-
         // this.gpio.glitchFilter(500);
 
         this.gpio.on('alert', (level) => {
@@ -24,6 +23,10 @@ class Button {
                 socket.emit('final-button', this.internal_id);
             }
         });
+    }
+
+    reset() {
+        this.pressed = false
     }
 }
 
