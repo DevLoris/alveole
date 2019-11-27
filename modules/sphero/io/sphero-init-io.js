@@ -30,7 +30,7 @@ module.exports = function (io) {
                  //   SPHERO_CACHE.get(data).doCircle()
                     //SPHERO_CACHE.get(data).move(new Move(_.random(0, 359), MOVE_VARS.SPHERO.MEDIUM));
                // }, 1000)
-            }, 1000)
+            }, 6000)
         });
     });
 };
