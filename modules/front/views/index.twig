@@ -1,14 +1,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
-<button style="width: 100vw; height: 100vh" onclick="socket.emit('spam-button', 0)">SPAM IT</button>
+<div>
+
+</div>
 
 <script>
     var socket = io('http://192.168.1.70:8001');
     socket.on('connect', function () {
-        console.log("connected");
+        setInterval(() => {
+            socket.emit('status');
+            socket.on('status', (data) => {
+                document.querySelector('div').innerText = JSON.stringify(data);
+            });
+        }, 1000);
     });
 </script>
