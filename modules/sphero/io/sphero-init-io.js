@@ -20,8 +20,6 @@ module.exports = function (io) {
             setTimeout(function () {
                 if( data === SPHERO_VARS.BALL_1)
                     SpheroJsonAnim.play('nectar', SPHERO_CACHE.get(data));
-                else
-                    SpheroJsonAnim.play('tptransparent', SPHERO_CACHE.get(data));
 
                 pushFinalButton();
                 //SPHERO_CACHE.get(data).glitch();
