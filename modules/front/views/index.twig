@@ -2,17 +2,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
-<div>
-
-</div>
+<div id="sp"></div>
+<div id="sp2"></div>
 
 <script>
     var socket = io('http://raspberrymain.local:8001');
     socket.on('connect', function () {
         setInterval(() => {
             socket.emit('status');
-            socket.on('status', (data) => {
-                document.querySelector('div').innerText = JSON.stringify(data);
+            socket.on('status', (data, data2) => {
+                document.querySelector('#sp').innerText = JSON.stringify(data);
+                document.querySelector('#sp2').innerText = JSON.stringify(data2);
             });
         }, 1000);
     });
