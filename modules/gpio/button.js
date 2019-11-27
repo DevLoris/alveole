@@ -35,7 +35,7 @@ class Button {
 
                     console.log(ball.spamed, SPHERO_VARS.SPAM)
 
-                    if(ball.spamed >= SPHERO_VARS.SPAM) {
+                    if(ball.spamed_time >= SPHERO_VARS.SPAM) {
                         ball.spamed_time = 0;
                         ball.state = SPHERO_VARS.STATES.MIEL;
                     }
