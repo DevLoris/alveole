@@ -22,7 +22,7 @@ class Button {
             if(this.pressed){
                 let ball = SPHERO_CACHE.get(SPHERO_VARS.BALL_2);
                 console.log('btn : ', this.pressed);
-                if(ball != undefined && ball !== null && ball.state === SPHERO_VARS.STATES.NECTAR && SPHERO_VARS.isModuleActive(2)) {
+                if(ball != undefined && ball !== null && ball.state === SPHERO_VARS.STATES.BEFORE_MIEL && SPHERO_VARS.isModuleActive(2)) {
                     if(!ball.spamed) {
                         SpheroJsonAnim.play("miel-" + ball.spamed_time, ball);
                         ball.spamed = true;

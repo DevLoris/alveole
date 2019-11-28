@@ -7,7 +7,7 @@ module.exports = function (io) {
         client.on('convert-nectar', function () {
             let ball =  SPHERO_CACHE.get(SPHERO_VARS.BALL_2);
             if(ball !== undefined && SPHERO_VARS.ACTIVE_MODULE === 2) {
-
+                ball.state = SPHERO_VARS.STATES.BEFORE_MIEL;
             }
         });
     });

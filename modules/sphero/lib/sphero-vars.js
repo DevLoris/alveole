@@ -8,6 +8,7 @@ const SPHERO_VARS = {
     STATES : {
         INACTIVE:  "INACTIVE",
         NECTAR: "NECTAR",
+        BEFORE_MIEL: "BEFORE_MIEL",
         MIEL: "MIEL"
     },
 
