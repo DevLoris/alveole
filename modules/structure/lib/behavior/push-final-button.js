@@ -8,6 +8,7 @@ let pushFinalButton = (init = false) => {
 
     if(init) {
         SPHERO_VARS.ALVEOLES = [false, false, false];
+        global.io.emit('reset_alveoles');
     }
 
     global.io.emit("sphero-reset", "");
