@@ -12,10 +12,11 @@ server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}.`);
 });
 
-const io = require('socket.io')(server);
 
 const {BUTTON_LIST} = require('./button-list'); //use GPIO pin 4, and specify that it is output
 const {LIST} = require('./led-list'); //use GPIO pin 4, and specify that it is output
+
+const io = require('socket.io')(server);
 
 io.on('connection', function (client) {
     client.on('led_on', function (id) {
@@ -28,10 +29,4 @@ io.on('connection', function (client) {
         if(LIST[id])
             LIST[id].off();
     });
-    client.on('reset_alveoles', function () {
-        console.log('RESET ALVEOLES')
-        Object.values(BUTTON_LIST).forEach((button) => {
-            button.reset()
-        })
-    })
 });
