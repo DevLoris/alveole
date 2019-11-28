@@ -27,6 +27,7 @@ class Sphero {
      * @param {Move} move
      */
     move(move) {
+        console.log(this.state, SPHERO_VARS.getModuleOf(this.identifier) === SPHERO_VARS.ACTIVE_MODULE, this.state !== SPHERO_VARS.STATES.INACTIVE);
         if(SPHERO_VARS.getModuleOf(this.identifier) === SPHERO_VARS.ACTIVE_MODULE && this.state !== SPHERO_VARS.STATES.INACTIVE)
             global.io.emit("sphero-move", this.identifier, move.heading, move.speed)
     }
