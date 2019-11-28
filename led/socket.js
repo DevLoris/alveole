@@ -1,4 +1,5 @@
 var client = require("socket.io-client");
+const {BUTTON_LIST} = require("./button-list");
 var socket = client.connect("http://raspberrymain.local:8001");
 
 socket.on('reset_alveoles', function () {
