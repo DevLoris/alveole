@@ -6,6 +6,10 @@ let pushFinalButton = (init = false) => {
     // RESET MODULE
     SPHERO_VARS.ACTIVE_MODULE = (init) ? 1 : 0;
 
+    if(init) {
+        SPHERO_VARS.ALVEOLES = [false, false, false];
+    }
+
     global.io.emit("sphero-reset", "");
 
     // RESET BALL
