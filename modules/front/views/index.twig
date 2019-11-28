@@ -9098,11 +9098,36 @@
     <div id="el" class="container">
         <div v-if="vars">
             <h1 class="orange-text">Spheros</h1>
-            <ul class="collection">
-                <li class="collection-item">${vars.BALL_1}</li>
-                <li class="collection-item">${vars.BALL_2}</li>
-                <li class="collection-item">${vars.BALL_3}</li>
-            </ul>
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th/>
+                        <th v-for="(sphero, key) in cache.cache">${sphero.identifier}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>allowMove</th>
+                        <td v-for="(sphero, key) in cache.cache">${sphero.allowMove}</td>
+                    </tr>
+                    <tr>
+                        <th>transfering</th>
+                        <td v-for="(sphero, key) in cache.cache">${sphero.transfering}</td>
+                    </tr>
+                    <tr>
+                        <th>spamed</th>
+                        <td v-for="(sphero, key) in cache.cache">${sphero.spamed}</td>
+                    </tr>
+                    <tr>
+                        <th>spamed_time</th>
+                        <td v-for="(sphero, key) in cache.cache">${sphero.spamed_time}</td>
+                    </tr>
+                    <tr>
+                        <th>state</th>
+                        <td v-for="(sphero, key) in cache.cache">${sphero.state}</td>
+                    </tr>
+                </tbody>
+            </table>
             <h4> STATES</h4>
             <table class="highlight responsive-table">
                     <thead>
@@ -9126,16 +9151,16 @@
 
             <table class="highlight responsive-table">
                 <thead>
-                <tr>
-                    <th>BEFORE_NEXT_SPAM</th>
-                    <th>SPAM (max.)</th>
-                </tr>
+                    <tr>
+                        <th>BEFORE_NEXT_SPAM</th>
+                        <th>SPAM (max.)</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>${vars.BEFORE_NEXT_SPAM}</td>
-                    <td>${vars.SPAM}</td>
-                </tr>
+                    <tr>
+                        <td>${vars.BEFORE_NEXT_SPAM}</td>
+                        <td>${vars.SPAM}</td>
+                    </tr>
                 </tbody>
             </table>
             <h3>Module 3</h3>
@@ -9158,22 +9183,27 @@
     </div>
 
 <script>
+
     var app = new Vue({
         delimiters: ['${', '}'],
         el: '#el',
         data: {
+            raspEnv: null,
             vars: {},
             cache: {}
         }
     })
 
-   var socket = io('http://raspberrymain.local:8001');
+
+
+    var socket = io(window.location.href);
     socket.on('connect', function () {
         setInterval(() => {
             socket.emit('status');
-            socket.on('status', (data, data2) => {
-                app.vars = data;
-                app.cache = data2;
+            socket.on('status', (raspEnv, vars, cache) => {
+                app.raspEnv = raspEnv;
+                app.vars = vars;
+                app.cache = cache;
             });
         }, 1000);
     });
