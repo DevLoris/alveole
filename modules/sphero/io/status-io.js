@@ -37,7 +37,7 @@ const fake_cache =
 module.exports = function (io) {
     io.on('connection', function (client) {
         client.on('status', function () {
-            client.emit('status', RASP_ENV,SPHERO_VARS,process.env.RASP === "oui" ?  SPHERO_CACHE : fake_cache)
+            client.emit('status', RASP_ENV,SPHERO_VARS, process.env.RASP === "oui" ?  SPHERO_CACHE : fake_cache)
         });
     });
 };
