@@ -9194,7 +9194,9 @@
         }
     })
 
-    var socket = io('http://localhost:8001');
+
+
+    var socket = io(window.location.href);
     socket.on('connect', function () {
         setInterval(() => {
             socket.emit('status');
