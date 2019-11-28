@@ -9167,7 +9167,7 @@
         }
     })
 
-   var socket = io('http://localhost:8001');
+   var socket = io('http://raspberrymain.local:8001');
     socket.on('connect', function () {
         setInterval(() => {
             socket.emit('status');
