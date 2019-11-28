@@ -6,7 +6,7 @@ module.exports = function (io) {
         client.on('final-button', function (data) {
             if(!SPHERO_VARS.ALVEOLES[data - 1]) {
                 console.log('FINAL BUTTON (' + data + ') PUSHED');
-                io.emit('alveole', data);
+                io.broadcast.emit('alveole', data);
 
                 SPHERO_VARS.ALVEOLES[data - 1] = true;
 
