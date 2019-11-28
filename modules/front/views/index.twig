@@ -9096,6 +9096,7 @@
 <body>
 
     <div id="el" class="container">
+        ${url}
         <div v-if="vars">
             <h1 class="orange-text">Spheros</h1>
             <table class="highlight">
@@ -9190,11 +9191,10 @@
         data: {
             raspEnv: null,
             vars: {},
-            cache: {}
+            cache: {},
+            url: window.location.href
         }
     })
-
-
 
     var socket = io(window.location.href);
     socket.on('connect', function () {
